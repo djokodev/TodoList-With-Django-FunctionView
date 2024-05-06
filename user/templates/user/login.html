@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock head %}
+
+{% block title %} <title>connexion</title> {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1>Connexion</h1>
+
+        {% if errors %}
+            <div class="error">
+                {{ errors }}
+            </div>
+        {% endif %}
+    
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>Pas encore de compte ? <a href="{% url 'register' %}">Inscrivez-vous !</a></p>
+            <input type="submit" value="let's go">
+        </form>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+    
+{% endblock footer %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Gestion des tâches </h1>
+
+        {% if tasks %}
+            {% for task in tasks  %}
+                <div class="task-item">
+                    <div class="task-info">
+                        <p>🤠 <em>cree par {{ task.user }}</em></p>
+                        <p>{{ task }} </p>
+                    </div>
+                    <div class="task-ed">
+                        {% if task.user == request.user %}
+                            <a href="{% url 'update_task' pk=task.id %}"><img src="{% static 'img/edit.png' %}" alt="edit_task" width="30" height="30"></a>
+                            <a href="{% url 'delete_task' pk=task.id %}"><img src="{% static 'img/Delete.png' %}" alt="delete_task" width="30" height="30"></a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center;">Aucune tâche pour le moment !</p>
+        {% endif %}
+       
+        <div class="add-task-button">
+            <a href="{% url 'create_task' %}">
+                <img src="{% static 'img/Add.png' %}" alt="Add task" width="70" height="55">
+            </a>
+        </div>
+    </div>
+
+{% endblock content %}

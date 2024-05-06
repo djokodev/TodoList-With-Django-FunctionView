@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create_task.css' %}">
+{% endblock head %}
+
+{% block content %}
+    <div class="container">
+        <h1>Ajoutez une tâche 📑</h1>
+
+        <form method="post" action="{% url 'create_task' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="enregistrer" class="button_enregister">
+        </form>
+    </div>
+{% endblock content %}

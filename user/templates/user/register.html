@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock head %}
+
+{% block title %} <title>Inscription</title> {% endblock title %}
+
+{% block content %}
+    
+    <div class="container">
+        <h1>Inscription</h1>
+
+        {% if errors %}
+            <div class="error">
+                {{ errors }}
+            </div>
+        {% endif %}
+        
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>Déjà un compte ? <a href="{% url 'login' %}">connectez-vous !</a></p>
+            <input type="submit" value="Valider" class="submit">
+        </form>
+    </div>
+        
+{% endblock content %}
+
+{% block footer %}
+    
+{% endblock footer %}
+

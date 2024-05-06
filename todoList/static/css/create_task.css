@@ -1,0 +1,19 @@
+.container {
+    text-align: center;
+    margin: 0 auto; 
+    position: absolute; 
+    top: 20%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.button_enregister {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.button_enregister:hover {
+    background-color: #F28F6B;
+}

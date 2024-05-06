@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/delete_task.css' %}">
+{% endblock head %}
+    
+{% block content %}
+
+    {% if error %}
+        {{ error }}
+    {% endif %}
+
+    <div class="container">
+        <h2>Vous voulez supprimer la tâche <span>{{ task.description }}</span> ?</h2>
+        <form method="post" action="{% url 'delete_task' pk=task.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="supprimer" class="button_suprimer">
+        </form>
+    </div>
+{% endblock content %}
